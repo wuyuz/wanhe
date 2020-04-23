@@ -37,9 +37,9 @@ class DevelopConfig(Config):
         'ENGINE': 'mysql',
         'DRIVER': 'pymysql',
         'USER': 'root',
-        'PASSWORD': '123',
-        'NAME': 'medicine',
-        'HOST': '47.95.217.144',
+        'PASSWORD': 'root',
+        'NAME': 'wanhe',
+        'HOST': '114.215.84.163',
         'PORT': '3306'
     }
 

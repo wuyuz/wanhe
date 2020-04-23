@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d314999-84d1-4af2-9e5a-edf3ed379a9a" name="Default Changelist" comment="" />
+    <list default="true" id="7d314999-84d1-4af2-9e5a-edf3ed379a9a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wanhe/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/wanhe/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wanhe/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/wanhe/model.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +20,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1ZHv0W1kP0w0o1cxD9W3swDBk86" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -24,8 +32,9 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../讯云数据/ipmi-dpa" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Demo/autoDraw" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -33,7 +42,7 @@
       <recent name="C:\Users\Administrator\Desktop\Project\wanHe" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.model">
+  <component name="RunManager" selected="Python.test">
     <configuration name="model" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="wanHe" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -113,6 +122,10 @@
       <workItem from="1584926358786" duration="637000" />
       <workItem from="1584945661331" duration="3302000" />
       <workItem from="1585030097702" duration="59000" />
+      <workItem from="1585964978060" duration="5417000" />
+      <workItem from="1586854484424" duration="191000" />
+      <workItem from="1586923087925" duration="1698000" />
+      <workItem from="1587016316836" duration="3133000" />
     </task>
     <servers />
   </component>
@@ -120,26 +133,34 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2656" y="317" key="FileChooserDialogImpl" timestamp="1584926375446">
+    <state x="2656" y="317" key="FileChooserDialogImpl" timestamp="1586854673513">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2656" y="317" key="FileChooserDialogImpl/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1584926375446" />
-    <state width="1860" height="292" key="GridCell.Tab.0.bottom" timestamp="1584510595894">
+    <state x="2656" y="317" key="FileChooserDialogImpl/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1586854673513" />
+    <state width="1877" height="294" key="GridCell.Tab.0.bottom" timestamp="1586222556325">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1860" height="292" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1584510595894" />
-    <state width="1860" height="292" key="GridCell.Tab.0.center" timestamp="1584510595894">
+    <state width="1877" height="294" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1280.720@0.0.1920.1080" timestamp="1585970221787" />
+    <state width="1877" height="294" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1586222556325" />
+    <state width="1877" height="294" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1586148281732" />
+    <state width="1877" height="294" key="GridCell.Tab.0.center" timestamp="1586222556324">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1860" height="292" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1584510595894" />
-    <state width="1860" height="292" key="GridCell.Tab.0.left" timestamp="1584510595894">
+    <state width="1877" height="294" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1280.720@0.0.1920.1080" timestamp="1585970221787" />
+    <state width="1877" height="294" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1586222556324" />
+    <state width="1877" height="294" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1586148281731" />
+    <state width="1877" height="294" key="GridCell.Tab.0.left" timestamp="1586222556324">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1860" height="292" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1584510595894" />
-    <state width="1860" height="292" key="GridCell.Tab.0.right" timestamp="1584510595894">
+    <state width="1877" height="294" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1280.720@0.0.1920.1080" timestamp="1585970221787" />
+    <state width="1877" height="294" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1586222556324" />
+    <state width="1877" height="294" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1586148281730" />
+    <state width="1877" height="294" key="GridCell.Tab.0.right" timestamp="1586222556324">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1860" height="292" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1584510595894" />
+    <state width="1877" height="294" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1280.720@0.0.1920.1080" timestamp="1585970221787" />
+    <state width="1877" height="294" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1586222556324" />
+    <state width="1877" height="294" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1586148281731" />
     <state x="2560" y="368" key="com.intellij.ide.util.TipDialog" timestamp="1584926358708">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -163,6 +184,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/wanHe$model.coverage" NAME="model Coverage Results" MODIFIED="1584510497085" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wanhe" />
-    <SUITE FILE_PATH="coverage/wanHe$test.coverage" NAME="test Coverage Results" MODIFIED="1584510558121" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wanhe/utils" />
+    <SUITE FILE_PATH="coverage/wanHe$test.coverage" NAME="test Coverage Results" MODIFIED="1585970095521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/wanhe/utils" />
   </component>
 </project>

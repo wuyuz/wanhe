@@ -47,9 +47,10 @@ class Medicine(models.Model):
 
 
 class Plan(models.Model):
-    """ 包表 """
+    """ 方案表 """
 
     __tablename__ = 'plans'
     id = models.Column(models.Integer, primary_key=True, autoincrement=True)
     name = models.Column(models.String(64))
+    illness = models.Column(models.String(128))
 
