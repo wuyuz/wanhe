@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d314999-84d1-4af2-9e5a-edf3ed379a9a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/wanhe/api/plans.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wanhe/api/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/wanhe/api/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wanhe/api/medicine.py" beforeDir="false" afterPath="$PROJECT_DIR$/wanhe/api/medicine.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wanhe/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/wanhe/model.py" afterDir="false" />
-    </list>
+    <list default="true" id="7d314999-84d1-4af2-9e5a-edf3ed379a9a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -129,6 +123,7 @@
       <workItem from="1587016316836" duration="3133000" />
       <workItem from="1588347681032" duration="1898000" />
       <workItem from="1588385101709" duration="14173000" />
+      <workItem from="1589266092202" duration="21000" />
     </task>
     <servers />
   </component>
