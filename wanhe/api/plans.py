@@ -1,15 +1,16 @@
-from flask_restful import Resource, fields, marshal_with, reqparse, request
+from flask_restful import Resource, fields, marshal_with, reqparse, request, marshal
 from flask import jsonify
+import json
 from wanhe.utils.pagination import Pagination
-from wanhe.model import Medicine
+from wanhe.model import Plan, PlanMedicine, Medicine
 
 # 序列化
 medicine_fields = {
     'id': fields.Integer,
     'name': fields.String,
-    'size': fields.String,
-    'taboo': fields.String,
-    'sale':fields.String
+    'total_sale': fields.String,
+    'illness': fields.String,
+    'detail': fields.String,
 }
 
 # 嵌套数据序列化
@@ -25,43 +26,73 @@ single_fields = {
 query = reqparse.RequestParser()
 
 
-class MedicineResource(Resource):
-
-    @marshal_with(single_fields)
+class PlanResource(Resource):
     def get(self):
         id = request.args.get('id')
+        full = request.args.get('full')
+        if full:
+            val = []
+            all = Medicine.query.all()
+            for i in all:
+                val.append({'value': i.id, 'label': i.name})
+            data = {
+                "status": 200,
+                "msg": 'OK',
+                "data": val,
+            }
+            return jsonify(data)
+
         # 单个id查询
         if id:
-            obj = Medicine.query.filter_by(id=id).first()
+            obj = Plan.query.filter_by(id=id).first()
+            plans_all = PlanMedicine.query.filter_by(planid=obj.id).all()
+            msg = []
+            for i in plans_all:
+                msg.append(i.medicineid)
 
+            obj.detail = json.dumps(msg)
             data = {
                 "status": 200,
                 "msg": 'OK',
                 "data": obj,
             }
-            return data
+            return marshal(data, single_fields)
+
 
         else:
-            medicines = Medicine.query.all()
-            total = len(medicines)
+            plans = Plan.query.all()
+            total = len(plans)
             paginate = Pagination(int(request.args.get('page')), total, request.base_url, request.args.get('query'),
                                   int(request.args.get('size')))
-            medicineList = medicines[paginate.start:paginate.end]
+            plan_list = plans[paginate.start:paginate.end]
+            plans_all = PlanMedicine.query.all()
 
+            for plan in plan_list:
+                msg = []
+                for i in plans_all:
+                    if str(plan.id) == i.planid:
+                        msg.append(i.medicineid)
+                plan.detail = ','.join(list(map(lambda x: x.name, Medicine.query.filter(Medicine.id.in_(msg)))))
             data = {
                 "status": 200,
                 "msg": 'OK',
-                "data": medicineList,
+                "data": plan_list,
                 "count": total,
                 "next": paginate.next,
                 "previous": paginate.prev,
             }
-            return data
+            return marshal(data, single_fields)
 
     def post(self):
         try:
-            obj = Medicine(**request.json)
+            obj = Plan(name=request.json.get("name"), total_sale=request.json.get('total_sale'),
+                       illness=request.json.get('illness'))
+            val = request.json.get('value')
             obj.save()
+            for i in val:
+                p_m = PlanMedicine(planid=obj.id, medicineid=i)
+                p_m.save()
+
         except Exception as e:
             return jsonify({
                 'code': 202,
@@ -80,7 +111,7 @@ class MedicineResource(Resource):
         id = request.args.get('id')
         # 单个id查询
         if id:
-            obj = Medicine.query.filter_by(id=id).first()
+            obj = Plan.query.filter_by(id=id).first()
             obj.delete()
             return jsonify({
                 'code': 200,
@@ -93,7 +124,7 @@ class MedicineResource(Resource):
 
     def put(self):
         id = request.json.get('id')
-        obj = Medicine.query.filter_by(id=id).first()
+        obj = Plan.query.filter_by(id=id).first()
         if not obj:
             return jsonify({
                 'code': 203,
@@ -116,5 +147,3 @@ class MedicineResource(Resource):
                 'code': 203,
                 'msg': "修改接口失败"
             })
-
-

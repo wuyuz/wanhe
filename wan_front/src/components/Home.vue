@@ -2,8 +2,9 @@
   <div style="height: 100%;">
     <el-container style="height: 100%;">
       <el-header class="headers">
-        <div style="width:180px;height:40px;">
-          <img src="@/assets/img/logo.png" alt />
+        <div style="width:180px;height:40px;text-align:center">
+          <!-- <img src="@/assets/img/logo.png" alt /> -->
+          <h3>药库系统</h3>
         </div>
         <div style="width:110px;">
           <div>
@@ -13,7 +14,7 @@
         </div>
       </el-header>
       <el-container style="height: 100%;">
-        <el-aside :width="collapse ? '64px' : '200px'">
+        <el-aside :width="collapse ? '55px' : '180px'">
           <div class="toggle-btton" @click="toggleCollapse">|||</div>
           <!-- 两层for循环 -->
           <el-menu
@@ -29,7 +30,7 @@
             <el-submenu :index="'/'+item.id" v-for="item in menuList" :key="item.id">
               <template slot="title">
                 <i :class="item.menu_icon"></i>
-                <span style="font-size: 16px;">{{ item.title }}</span>
+                <span style="font-size: 15px;">{{ item.title }}</span>
               </template>
               <el-menu-item
                 :index="'/'+subitem.url"

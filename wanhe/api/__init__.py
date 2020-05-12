@@ -1,6 +1,7 @@
 from flask_restful import Api
 from wanhe.api.auth import UserResource
 from wanhe.api.medicine import MedicineResource
+from wanhe.api.plans import PlanResource
 
 api = Api()
 
@@ -15,3 +16,4 @@ def init_api(app):
 
 api.add_resource(UserResource, '/api/v1/login/')
 api.add_resource(MedicineResource, '/api/v1/medicine/')
+api.add_resource(PlanResource, '/api/v1/plans/')

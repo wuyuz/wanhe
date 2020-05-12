@@ -9,8 +9,9 @@
         :model="loginForm"
         class="login_form"
       >
-        <div class="avatar_box">
-          <img src="@/assets/img/logo1.png" alt="logo" />
+        <div class="avatar_box" style="text-align:center">
+          <!-- <img src="@/assets/img/logo1.png" alt="logo" /> -->
+          <h3> 药库系统 </h3>
         </div>
         <el-form-item prop="username">
           <el-input placeholder="用户名" prefix-icon="el-icon-s-custom" v-model="loginForm.username"></el-input>

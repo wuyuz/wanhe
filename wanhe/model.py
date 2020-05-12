@@ -39,11 +39,29 @@ class Medicine(models.Model):
     name = models.Column(models.String(64))
     size = models.Column(models.String(64), nullable=True)
     taboo = models.Column(models.String(128), nullable=True)
+    sale = models.Column(models.String(12),nullable=True)
     note = models.Column(models.String(255))
 
     def save(self):
         models.session.add(self)
         models.session.commit()
+
+    def delete(self):
+        try:
+            models.session.delete(self)
+            models.session.commit()
+            return True
+        except Exception as e:
+            models.session.rollback()  # 事务
+            return False
+
+    def commit(self):
+        try:
+            models.session.commit()
+            return True
+        except Exception as e:
+            models.session.rollback()  # 事务
+            return False
 
 
 class Plan(models.Model):
@@ -52,5 +70,55 @@ class Plan(models.Model):
     __tablename__ = 'plans'
     id = models.Column(models.Integer, primary_key=True, autoincrement=True)
     name = models.Column(models.String(64))
+    total_sale = models.Column(models.String(24))
     illness = models.Column(models.String(128))
 
+    def save(self):
+        models.session.add(self)
+        models.session.commit()
+
+    def delete(self):
+        try:
+            models.session.delete(self)
+            models.session.commit()
+            return True
+        except Exception as e:
+            models.session.rollback()  # 事务
+            return False
+
+    def commit(self):
+        try:
+            models.session.commit()
+            return True
+        except Exception as e:
+            models.session.rollback()  # 事务
+            return False
+
+class PlanMedicine(models.Model):
+    """ 方案组合表"""
+
+    __tablename__ = 'plan_medicine'
+    id = models.Column(models.Integer, primary_key=True, autoincrement=True)
+    planid = models.Column(models.String(64))
+    medicineid = models.Column(models.String(64))
+
+    def save(self):
+        models.session.add(self)
+        models.session.commit()
+
+    def delete(self):
+        try:
+            models.session.delete(self)
+            models.session.commit()
+            return True
+        except Exception as e:
+            models.session.rollback()  # 事务
+            return False
+
+    def commit(self):
+        try:
+            models.session.commit()
+            return True
+        except Exception as e:
+            models.session.rollback()  # 事务
+            return False

@@ -29,11 +29,10 @@
       <!-- 表格内容 -->
       <el-row style="margin-top:20px;">
         <el-table :data="res.data" style="width: 100%" border>
-          <el-table-column prop="name" label="药品名" align="center" width="200"></el-table-column>
-          <el-table-column prop="size" label="药品规格" width="100" align="center"></el-table-column>
-          <el-table-column prop="taboo" label="注意事项" align="center"></el-table-column>
-          <el-table-column prop="sale" label="价格" align="center"></el-table-column>
-          <el-table-column prop="note" label="备注信息" align="center"></el-table-column>
+          <el-table-column prop="name" label="方案名" align="center" width="200"></el-table-column>
+          <el-table-column prop="illness" label="治疗病症" width="100" align="center"></el-table-column>
+          <el-table-column prop="total_sale" label="方案总价" align="center"></el-table-column>
+          <el-table-column prop="detail" label="药品详细" align="center"></el-table-column>
           <el-table-column label="操作" fixed="right" width="120">
             <template slot-scope="scope">
               <el-button
@@ -66,22 +65,26 @@
         ></el-pagination>
       </el-row>
     </el-card>
-    <el-dialog title="新增药品" :visible.sync="dialogFormVisible" width="50%" @close="closeDialog()">
+    <el-dialog title="新增方案" :visible.sync="dialogFormVisible" width="50%" @close="closeDialog()">
       <el-form :model="addForm" ref="addFormRef" :rules="rules">
-        <el-form-item label="药品名" :label-width="formLabelWidth" prop="name">
+        <el-form-item label="方案名" :label-width="formLabelWidth" prop="name">
           <el-input v-model="addForm.name" autocomplete="off" style="width:50%;"></el-input>
         </el-form-item>
-        <el-form-item label="药品规格" :label-width="formLabelWidth" prop="name">
-          <el-input v-model="addForm.size" autocomplete="off" style="width:50%;"></el-input>
+        <el-form-item label="治疗病症" :label-width="formLabelWidth" prop="illness">
+          <el-input v-model="addForm.illness" autocomplete="off" style="width:50%;"></el-input>
         </el-form-item>
-        <el-form-item label="注意事项" :label-width="formLabelWidth" prop="content">
-          <el-input v-model="addForm.taboo" autocomplete="off" style="width:50%;"></el-input>
+        <el-form-item label="方案总价" :label-width="formLabelWidth" prop="total_sale">
+          <el-input v-model="addForm.total_sale" autocomplete="off" style="width:50%;"></el-input>
         </el-form-item>
-        <el-form-item label="价格" :label-width="formLabelWidth" prop="content">
-          <el-input v-model="addForm.sale" autocomplete="off" style="width:50%;"></el-input>
-        </el-form-item>
-        <el-form-item label="备注" :label-width="formLabelWidth" prop="content">
-          <el-input v-model="addForm.note" autocomplete="off" style="width:50%;"></el-input>
+        <el-form-item label="药品详细" :label-width="formLabelWidth" prop="detail">
+          <el-select v-model="addForm.value" multiple placeholder="请选择" style="width:50%;">
+            <el-option
+              v-for="item in val_data"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            ></el-option>
+          </el-select>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -90,22 +93,26 @@
       </div>
     </el-dialog>
 
-    <el-dialog title="修改药品" :visible.sync="editVisible" width="50%" @close="editDialog()">
+    <el-dialog title="修改方案" :visible.sync="editVisible" width="50%" @close="editDialog()">
       <el-form :model="addsForm" ref="editFormsRef" :rules="rules">
-        <el-form-item label="药品名" :label-width="formLabelWidth" prop="name">
+        <el-form-item label="方案名" :label-width="formLabelWidth" prop="name">
           <el-input v-model="addsForm.name" autocomplete="off" style="width:50%;"></el-input>
         </el-form-item>
-        <el-form-item label="药品规格" :label-width="formLabelWidth" prop="name">
-          <el-input v-model="addsForm.size" autocomplete="off" style="width:50%;"></el-input>
+        <el-form-item label="治疗病症" :label-width="formLabelWidth" prop="illness">
+          <el-input v-model="addsForm.illness" autocomplete="off" style="width:50%;"></el-input>
         </el-form-item>
-        <el-form-item label="注意事项" :label-width="formLabelWidth" prop="content">
-          <el-input v-model="addsForm.taboo" autocomplete="off" style="width:50%;"></el-input>
+        <el-form-item label="方案总价" :label-width="formLabelWidth" prop="total_sale">
+          <el-input v-model="addsForm.total_sale" autocomplete="off" style="width:50%;"></el-input>
         </el-form-item>
-        <el-form-item label="价格" :label-width="formLabelWidth" prop="content">
-          <el-input v-model="addsForm.sale" autocomplete="off" style="width:50%;"></el-input>
-        </el-form-item>
-        <el-form-item label="备注" :label-width="formLabelWidth" prop="content">
-          <el-input v-model="addsForm.note" autocomplete="off" style="width:50%;"></el-input>
+        <el-form-item label="药品详细" :label-width="formLabelWidth" prop="detail">
+          <el-select v-model="addsForm.value" multiple placeholder="请选择" style="width:50%;">
+            <el-option
+              v-for="item in val_data"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            ></el-option>
+          </el-select>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -122,6 +129,7 @@ export default {
     return {
       res: {},
       loading: false,
+      val_data: [],
       queryset: {
         query: "",
         page: 1,
@@ -131,18 +139,18 @@ export default {
       editVisible: false,
       formLabelWidth: "100px",
       addForm: {
+        id: "",
         name: "",
-        size: "",
-        taboo: "",
-        note: "",
-        sale:''
+        total_sale: "",
+        illness: "",
+        value: []
       },
       addsForm: {
+        id: "",
         name: "",
-        size: "",
-        taboo: "",
-        note: "",
-        sale:''
+        total_sale: "",
+        illness: "",
+        value: []
       },
       rules: {
         name: [
@@ -154,8 +162,19 @@ export default {
   },
   methods: {
     // 获取数据函数
+    async getMedicine() {
+      const data = await this.$http.get("/plans/", {
+        params: { full: "full" }
+      });
+      // console.log(data);
+      if (data.status != 200) return this.$message.error("获取数据失败");
+      // 存储数据
+      this.val_data = data.data.data;
+    },
+
+    // 获取数据函数
     async getData() {
-      const data = await this.$http.get("/medicine/", {
+      const data = await this.$http.get("/plans/", {
         params: this.queryset
       });
       // console.log(data);
@@ -168,7 +187,7 @@ export default {
     // 分页页码数
     async handleSizeChange(newval) {
       this.queryset.size = newval;
-      const data = await this.$http.get("/medicine/", {
+      const data = await this.$http.get("/plans/", {
         params: this.queryset
       });
 
@@ -179,7 +198,7 @@ export default {
     // 当前页码变化函数
     async handleCurrentChange(currentpage) {
       this.queryset.page = currentpage;
-      const data = await this.$http.get("/medicine/", {
+      const data = await this.$http.get("/plans/", {
         params: this.queryset
       });
 
@@ -203,7 +222,7 @@ export default {
     editData() {
       this.$refs.editFormsRef.validate(async valid => {
         if (!valid) return;
-        const data = await this.$http.put("/medicine/", this.addsForm);
+        const data = await this.$http.put("/plans/", this.addsForm);
         if (data.data.code != 200) {
           this.editVisible = false;
           this.$message.error("修改失败");
@@ -221,22 +240,27 @@ export default {
       // 先表单验证
       this.$refs.addFormRef.validate(async valid => {
         if (!valid) return;
-        const data = await this.$http.post("/medicine/", this.addForm);
+        const data = await this.$http.post("/plans/", this.addForm);
         if (data.data.code != 200) return this.$message.error(`${data.msg}`);
         this.dialogFormVisible = false;
         this.$refs.addFormRef.resetFields();
         this.$message.success(`${data.data.msg}`);
+        this.val_data = [];
         this.getData();
       });
     },
 
     // 编辑函数
     async editFun(id) {
-      const data = await this.$http.get("/medicine/", { params: { id: id } });
+      const data = await this.$http.get("/plans/", { params: { id: id } });
       console.log(data);
       if (data.status != 200) return this.$message.error("获取数据失败");
       this.addsForm = data.data.data;
+    //   console.log(JSON.parse(data.data.data.detail))
+        // console.log()
+      this.addsForm.value = JSON.parse(data.data.data.detail)
       this.editVisible = true;
+      console.log(this.addsForm)
     },
 
     // 删除按钮事件
@@ -253,7 +277,7 @@ export default {
         //  截获异常和取消
         .catch(err => err);
       if (msg != "confirm") return this.$message.info("已取消删除");
-      const data = await this.$http.delete(`/medicine/`, { params: { id: id } });
+      const data = await this.$http.delete(`/plans/`, { params: { id: id } });
       if (data.data.code != 200) {
         return this.$message.error("删除失败");
       }
@@ -264,6 +288,7 @@ export default {
 
   created: function() {
     this.getData();
+    this.getMedicine();
   }
 };
 </script>

@@ -9,7 +9,7 @@ Vue.config.productionTip = false
 // var baseURLStr = window.g.ApiUrl
 // axios.defaults.baseURL = baseURLStr
 
-axios.defaults.baseURL = 'http://127.0.0.1:5555/api/v1/'
+axios.defaults.baseURL = 'http://127.0.0.1:5000/api/v1/'
 
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-fromurlencodeed;charset=UTF-8'
 Vue.prototype.$http = axios
