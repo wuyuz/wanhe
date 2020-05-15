@@ -3,17 +3,11 @@ import App from './App.vue'
 import router from './router'
 import './plugins/element.js'
 import './assets/css/global.css'
-import axios from 'axios'
-
-Vue.config.productionTip = false
-// var baseURLStr = window.g.ApiUrl
-// axios.defaults.baseURL = baseURLStr
-
-axios.defaults.baseURL = 'http://127.0.0.1:5000/api/v1/'
-
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-fromurlencodeed;charset=UTF-8'
-Vue.prototype.$http = axios
+// import axios from 'axios'
+import MyServerHtpp from './plugins/http.js'
+Vue.use(MyServerHtpp);
+Vue.config.productionTip = false;
 new Vue({
   router,
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');

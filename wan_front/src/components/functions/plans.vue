@@ -12,14 +12,14 @@
           <el-button
             type="primary"
             plain
-            @click="dialogFormVisible=true"
+            @click="showAddDialog"
             size="mini"
             style="margin-top: 12px;"
           >新增</el-button>
         </el-col>
         <el-form :inline="true">
           <el-col :offset="18" :span="5">
-            <el-input placeholder="请输入内容" v-model="queryset.query" class="input-with-select">
+            <el-input placeholder="请输入内容" v-model="queryset.query" class="input-with-select" clearable @clear="clearQuery">
               <el-button type="primary" plain slot="append" icon="el-icon-search" @click="getData"></el-button>
             </el-input>
           </el-col>
@@ -105,7 +105,7 @@
           <el-input v-model="addsForm.total_sale" autocomplete="off" style="width:50%;"></el-input>
         </el-form-item>
         <el-form-item label="药品详细" :label-width="formLabelWidth" prop="detail">
-          <el-select v-model="addsForm.value" multiple placeholder="请选择" style="width:50%;">
+          <el-select v-model="addsForm.value" multiple placeholder="请选择" style="width:50%;" @change="select_status">
             <el-option
               v-for="item in val_data"
               :key="item.value"
@@ -161,12 +161,24 @@ export default {
     };
   },
   methods: {
+    clearQuery () {
+      this.queryset.query = "";
+      this.getData()
+    },
+    select_status () {
+      // console.log(val);val
+      this.$forceUpdate();
+    },
+    showAddDialog () {
+      // this.$refs.editFormsRef.resetFields();
+      this.dialogFormVisible=true;
+      this.addForm.value = []
+    },
     // 获取数据函数
     async getMedicine() {
       const data = await this.$http.get("/plans/", {
         params: { full: "full" }
       });
-      // console.log(data);
       if (data.status != 200) return this.$message.error("获取数据失败");
       // 存储数据
       this.val_data = data.data.data;
@@ -177,11 +189,9 @@ export default {
       const data = await this.$http.get("/plans/", {
         params: this.queryset
       });
-      // console.log(data);
       if (data.status != 200) return this.$message.error("获取数据失败");
       // 存储数据
       this.res = data.data;
-      //   console.log(this.res);
     },
 
     // 分页页码数
@@ -252,15 +262,15 @@ export default {
 
     // 编辑函数
     async editFun(id) {
+      this.getMedicine();
       const data = await this.$http.get("/plans/", { params: { id: id } });
-      console.log(data);
       if (data.status != 200) return this.$message.error("获取数据失败");
       this.addsForm = data.data.data;
-    //   console.log(JSON.parse(data.data.data.detail))
-        // console.log()
-      this.addsForm.value = JSON.parse(data.data.data.detail)
+      const dataStrArr = JSON.parse(data.data.data.detail);
+      this.addsForm.value =dataStrArr.map(function(data){
+        return +data;
+      });
       this.editVisible = true;
-      console.log(this.addsForm)
     },
 
     // 删除按钮事件

@@ -5,6 +5,8 @@ import Home from '../components/Home.vue'
 import Welcome from '../components/Welcome.vue'
 import Medicine from '../components/functions/medicine.vue'
 import Plans from '../components/functions/plans.vue'
+import MedicineType from '../components/functions/medicinetype.vue'
+import Server from '../components/functions/server.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +17,8 @@ const routes = [
       { path: '/welcome', component: Welcome, meta: { title: '欢迎界面' } },
       { path: '/medicine', component: Medicine, meta: { title: '药品信息' } },
       { path: '/plans', component: Plans, meta: { title: '方案信息' } },
+      { path: '/medicinetype', component: MedicineType, meta: { title: '药品类型' } },
+      { path: '/server', component: Server, meta: { title: '检索平台' } }
     ]
   }
 ]

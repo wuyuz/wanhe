@@ -3,7 +3,7 @@ from flask import jsonify
 import json
 from wanhe.utils.pagination import Pagination
 from wanhe.model import Plan, PlanMedicine, Medicine
-
+from sqlalchemy import and_
 # 序列化
 medicine_fields = {
     'id': fields.Integer,
@@ -49,7 +49,6 @@ class PlanResource(Resource):
             msg = []
             for i in plans_all:
                 msg.append(i.medicineid)
-
             obj.detail = json.dumps(msg)
             data = {
                 "status": 200,
@@ -57,10 +56,14 @@ class PlanResource(Resource):
                 "data": obj,
             }
             return marshal(data, single_fields)
-
-
         else:
-            plans = Plan.query.all()
+            query = request.args.get('query')
+            if query:
+                plans = Plan.query.filter(
+                    Plan.name.like("%" + query + "%") if query is not None else ""
+                ).all()
+            else:
+                plans = Plan.query.all()
             total = len(plans)
             paginate = Pagination(int(request.args.get('page')), total, request.base_url, request.args.get('query'),
                                   int(request.args.get('size')))
@@ -136,8 +139,20 @@ class PlanResource(Resource):
         obj.taboo = request.json.get('taboo')
         obj.sale = request.json.get('sale')
         obj.note = request.json.get('note')
-
+        value = request.json.get("value")
         if obj.commit():
+            exist_planid ={int(p.medicineid) for p in PlanMedicine.query.filter_by(planid=obj.id)}
+            delete_planid,insert_planid = exist_planid.difference(set(value)),set(value).difference(exist_planid)
+            if delete_planid:
+                delete_demo = PlanMedicine.query.filter(and_(
+                    PlanMedicine.planid == obj.id,
+                    PlanMedicine.medicineid.in_(list(delete_planid)))).all()
+                for dd in delete_demo:
+                    dd.delete()
+            if insert_planid:
+                for i in insert_planid:
+                    p_m = PlanMedicine(planid=obj.id, medicineid=i)
+                    p_m.save()
             return jsonify({
                 'code': 200,
                 'msg': "修改接口成功"

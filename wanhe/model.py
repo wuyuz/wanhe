@@ -11,7 +11,6 @@ class User(models.Model):
     _s_password = models.Column(models.String(128))
     role = models.Column(models.SmallInteger, default=1)
     other = models.Column(models.String(32), default=None)
-
     @property
     def s_password(self):
         raise Exception("Error Action")
@@ -31,6 +30,38 @@ class User(models.Model):
         return '<User %r>' % self.username
 
 
+class MedicineType(models.Model):
+    __tablename__ = "medicinetype"
+    id = models.Column(models.Integer, primary_key=True, autoincrement=True)
+    name = models.Column(models.String(64))
+    content = models.Column(models.Text, nullable=False)
+    def save(self):
+        models.session.add(self)
+        models.session.commit()
+    def delete(self):
+        # 查询是否关联medicine
+        try:
+            models.session.delete(self)
+            models.session.commit()
+            return True
+        except Exception as e:
+            models.session.rollback()  # 事务
+            return False
+    def commit(self):
+        try:
+            models.session.commit()
+            return True
+        except Exception as e:
+            models.session.rollback()  # 事务
+            return False
+    def validate_type(self, field):
+        is_exist = Medicine.query.filter_by(mtid=field).all()
+        if is_exist:
+            return False
+        return True
+    def __repr__(self):
+        return self.name
+
 class Medicine(models.Model):
     """ 基础表 """
 
@@ -41,7 +72,8 @@ class Medicine(models.Model):
     taboo = models.Column(models.String(128), nullable=True)
     sale = models.Column(models.String(12),nullable=True)
     note = models.Column(models.String(255))
-
+    mtid = models.Column(models.Integer, models.ForeignKey('medicinetype.id'))
+    mtype = models.relationship("MedicineType", backref="medicinetypes")
     def save(self):
         models.session.add(self)
         models.session.commit()
@@ -62,6 +94,12 @@ class Medicine(models.Model):
         except Exception as e:
             models.session.rollback()  # 事务
             return False
+    def validate_plan(self, field):
+        is_exist = PlanMedicine.query.filter_by(medicineid=field).all()
+        if is_exist:
+            return False
+        return True
+
 
 
 class Plan(models.Model):
