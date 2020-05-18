@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7d314999-84d1-4af2-9e5a-edf3ed379a9a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wanhe/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/wanhe/model.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +32,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Demo/autoDraw" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -128,6 +128,8 @@
       <workItem from="1588385101709" duration="14173000" />
       <workItem from="1589266092202" duration="21000" />
       <workItem from="1589379896453" duration="1370000" />
+      <workItem from="1589559366505" duration="873000" />
+      <workItem from="1589708017700" duration="31000" />
     </task>
     <servers />
   </component>
@@ -163,11 +165,11 @@
     <state width="1877" height="294" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1280.720@0.0.1920.1080" timestamp="1585970221787" />
     <state width="1877" height="294" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1586222556324" />
     <state width="1877" height="294" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1586148281731" />
-    <state x="2560" y="368" key="com.intellij.ide.util.TipDialog" timestamp="1584926358708">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state x="640" y="368" key="com.intellij.ide.util.TipDialog" timestamp="1589708047328">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="2560" y="368" key="com.intellij.ide.util.TipDialog/0.0.1920.1080/1920.0.1920.1080@1920.0.1920.1080" timestamp="1584926358708" />
-    <state x="640" y="368" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1584794630356" />
+    <state x="640" y="368" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1589708047328" />
     <state x="2482" y="254" width="672" height="678" key="search.everywhere.popup" timestamp="1584520406039">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>

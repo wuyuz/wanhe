@@ -42,6 +42,7 @@ class UserResource(Resource):
         name = request.json.get('username')
         password = request.json.get('password')
         find_one = User.query.filter(User.username.__eq__(name)).first()
+        print(find_one,find_one.check_password(password))
         if find_one and find_one.check_password(password):
             token = Jwt.encode({'username': name}, Config.SIGN)
             return jsonify({

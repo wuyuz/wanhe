@@ -73,7 +73,7 @@ export default {
     // 获取所有的菜单
     async getMenuList() {
       const { data: res } = await this.$http.get("login/");
-      console.log(res);
+      // console.log(res);
       this.menuList = res.data;
       // console.log(this.menuList[1].children);
     },

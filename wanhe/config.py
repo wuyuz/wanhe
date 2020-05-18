@@ -33,13 +33,22 @@ class DevelopConfig(Config):
     DEBUG = True
 
     # mysql数据库参数
+    # db_info = {
+    #     'ENGINE': 'mysql',
+    #     'DRIVER': 'pymysql',
+    #     'USER': 'root',
+    #     'PASSWORD': '123',# root
+    #     'NAME': 'wanhe',
+    #     'HOST': '127.0.0.1',# 114.215.84.163
+    #     'PORT': '3306'
+    # }
     db_info = {
         'ENGINE': 'mysql',
         'DRIVER': 'pymysql',
         'USER': 'root',
-        'PASSWORD': '123',# root
+        'PASSWORD': 'root',
         'NAME': 'wanhe',
-        'HOST': '127.0.0.1',# 114.215.84.163
+        'HOST': '114.215.84.163',
         'PORT': '3306'
     }
 
@@ -76,9 +85,9 @@ class ProductConfig(Config):
         'ENGINE': 'mysql',
         'DRIVER': 'pymysql',
         'USER': 'root',
-        'PASSWORD': '123',
-        'NAME': 's1',
-        'HOST': 'localhost',
+        'PASSWORD': 'root',
+        'NAME': 'wanhe',
+        'HOST': '114.215.84.163',
         'PORT': '3306'
     }
 
