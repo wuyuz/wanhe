@@ -4,7 +4,7 @@ MyHttpServer.install = (Vue) => {
     axios.defaults.headers.post['Content-type'] = 'application/json'
     axios.defaults.headers['Access-Control-Allow-Origin'] = '*'
     Vue.prototype.$http = axios
-    axios.defaults.baseURL = 'http://127.0.0.1:5000/api/v1/'
+    axios.defaults.baseURL = 'http://114.215.84.163:5001/api/v1/'
     axios.interceptors.request.use(function (config) {
         if (config.url !== 'login/') {
             const AUTH_TOKEN = window.sessionStorage.getItem('token')
